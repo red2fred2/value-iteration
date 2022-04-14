@@ -1,8 +1,18 @@
+mod grid_world;
+
 #[cfg(test)]
 mod tests {
+	use value_iteration::MDP;
+
+	use crate::grid_world::*;
     #[test]
-    fn add_2_2() {
-        let result = value_iteration::add(2, 2);
-        assert_eq!(result, 4);
+    fn utilities() {
+		let mdp = GridWorld::new();
+		let space = Space::new(1);
+
+		let mut visited = Vec::new();
+		visited.push(space);
+		let utility = mdp.utility(space, GAMMA, &mut visited);
+		assert_eq!(utility, 0.0);
     }
 }
